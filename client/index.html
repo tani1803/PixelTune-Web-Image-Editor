@@ -3,59 +3,111 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link
-    href="https://cdn.jsdelivr.net/npm/remixicon@4.7.0/fonts/remixicon.css"
-    rel="stylesheet"
-    />
+    <title>PixelTune | Professional Image Editor</title>
+    <meta name="description" content="PixelTune - A sleek, powerful, and professional web-based image editor for all your creative needs.">
+    
+    <!-- Fonts and Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.7.0/fonts/remixicon.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.css" />
+
     <link rel="stylesheet" href="theme.css">
     <link rel="stylesheet" href="style.css">
-
 </head>
 <body>
-    <div class="navbar">
-        <h2>PixelTune</h2>
-        <div class="nav-buttons">
-            <button id="gallery-btn">My Gallery</button>
-            <button id="logout-btn">Logout</button>
+    <header class="navbar">
+        <div class="logo">
+            <i class="ri-rhythm-line"></i>
+            <h1>PixelTune<span>Pro</span></h1>
         </div>
-    </div>
+        <div class="nav-buttons">
+            <button id="gallery-btn" class="nav-link"><i class="ri-gallery-line"></i> Gallery</button>
+            <button id="logout-btn" class="nav-link logout"><i class="ri-logout-box-r-line"></i></button>
+        </div>
+    </header>
     
-    <main>
-        <section>
-            <div class="left">
-                <div class="top">
-                    <label for="image-input" class="btn">
-                        Chose Image
-                    <input type="file" id="image-input" accept="image/*" hidden>
+    <main class="editor-container">
+        <aside class="sidebar left-sidebar">
+            <div class="module-group">
+                <h3><i class="ri-tools-line"></i> Tools</h3>
+                <div class="tool-grid">
+                    <label for="image-input" class="tool-btn" title="Upload Image">
+                        <i class="ri-upload-2-line"></i>
+                        <span>Upload</span>
+                        <input type="file" id="image-input" accept="image/*" hidden>
                     </label>
-                    <button class="btn" id="reset-btn">Reset</button>
-                    <button id="save-btn">Save Image</button>                </div>
-                <div class="bottom">
-                    <div class="placeholder">
-                        <i class="ri-image-line"></i>
-                        <p>No image chosen</p>
-                    </div>
+                    <button class="tool-btn" id="crop-btn" title="Toggle Crop Mode">
+                        <i class="ri-crop-line"></i>
+                        <span>Crop</span>
+                    </button>
+                    <button class="tool-btn" id="reset-btn" title="Reset All Changes">
+                        <i class="ri-refresh-line"></i>
+                        <span>Reset</span>
+                    </button>
+                </div>
+            </div>
 
+            <div class="module-group">
+                <h3><i class="ri-equalizer-line"></i> Fine Tune</h3>
+                <div class="filters scroll-area">
+                    <!-- Filters will be injected here -->
+                </div>
+            </div>
+
+            <div class="module-group">
+                <h3><i class="ri-magic-line"></i> Presets</h3>
+                <div class="presets-grid scroll-area">
+                    <!-- Presets will be injected here -->
+                </div>
+            </div>
+        </aside>
+
+        <section class="viewport">
+            <div class="crop-toolbar glass" id="crop-tools" style="display: none;">
+                <div class="tool-section">
+                    <span>Ratio:</span>
+                    <button onclick="setCropRatio(1)">1:1</button>
+                    <button onclick="setCropRatio(16/9)">16:9</button>
+                    <button onclick="setCropRatio(4/3)">4:3</button>
+                    <button onclick="setCropRatio(NaN)">Free</button>
+                </div>
+                <div class="tool-divider"></div>
+                <div class="tool-section">
+                    <button onclick="rotateImg(-90)" title="Rotate Left"><i class="ri-rotate-left-line"></i></button>
+                    <button onclick="rotateImg(90)" title="Rotate Right"><i class="ri-rotate-right-line"></i></button>
+                    <button onclick="flipImg('h')" title="Flip Horizontal"><i class="ri-reflect-line"></i></button>
+                    <button onclick="flipImg('v')" title="Flip Vertical" style="transform: rotate(90deg);"><i class="ri-reflect-line"></i></button>
+                </div>
+            </div>
+
+            <div class="image-workspace" id="drop-zone">
+                <div class="placeholder" id="empty-state">
+                    <div class="icon-pulse">
+                        <i class="ri-image-add-line"></i>
+                    </div>
+                    <h2>Start your creation</h2>
+                    <p>Drag & drop or upload an image to begin editing</p>
+                </div>
+                
+                <div class="canvas-wrapper">
                     <canvas id="image-canvas"></canvas>
                 </div>
-
-            </div>
-            <div class="right">
-                <h2>Filters</h2>
-                <div class="filters">
-                
-                </div>
-                <h2>Presets</h2>
-                <div class="presets">
-                    
-                </div>
-
             </div>
 
+
+            <div class="action-bar glass">
+                <div class="status-info">
+                    <span id="img-dim">No image loaded</span>
+                </div>
+                <div class="final-actions">
+                    <button id="download-btn" class="btn btn-secondary"><i class="ri-download-2-line"></i> Download</button>
+                    <button id="save-btn" class="btn btn-primary"><i class="ri-save-3-line"></i> Save to Cloud</button>
+                </div>
+            </div>
         </section>
     </main>
 
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.js"></script>
     <script src="script.js"></script>
 </body>
-</html>
+</html>

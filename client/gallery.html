@@ -1,28 +1,33 @@
 <!doctype html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>MY Gallery</title>
-    <link rel="stylesheet" href="theme.css">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="gallery.css">
+    <title>PixelTune | My Gallery</title>
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.7.0/fonts/remixicon.css" rel="stylesheet">
-  </head>
-  <body>
-    <div class="top-bar">
-      <i class="ri-arrow-left-line" id="back-btn"></i>
-    </div>
+    <link rel="stylesheet" href="theme.css">
+    <link rel="stylesheet" href="gallery.css">
+</head>
+<body>
+    <header>
+        <div class="title-area">
+            <i class="ri-arrow-left-line" id="back-btn" title="Back to Editor"></i>
+            <h1>Stored Creations</h1>
+        </div>
+    </header>
 
-    <h1>My Saved Images</h1>
-
-    <div class="gallery" id="gallery"></div>
+    <main>
+        <div class="gallery" id="gallery">
+            <!-- Images will be injected here -->
+        </div>
+    </main>
 
     <div id="image-modal" class="modal">
-      <span id="close-modal">&times;</span>
-      <img id="modal-img" />
+        <span id="close-modal">&times;</span>
+        <img id="modal-img" src="" alt="Zoomed view" />
     </div>
 
     <script src="gallery.js"></script>
-  </body>
+</body>
 </html>
+
